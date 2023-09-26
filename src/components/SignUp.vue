@@ -17,7 +17,7 @@
 import axios from "axios"
 export default {
     name: "SignUp",
-    data(){
+    data() {
         return {
             name: "",
             email: "",
@@ -25,21 +25,26 @@ export default {
         }
     },
     methods: {
-        async signUp(){
+        async signUp() {
             console.log({
-                    email: this.$data.email,
-                    password: this.$data.password,
-                    name: this.$data.name,
-                });
-            const result = await axios.post("http://localhost:3000/users" ,  {
-                    email: this.$data.email,
-                    password: this.$data.password,
-                    name: this.$data.name,
-                },
+                email: this.$data.email,
+                password: this.$data.password,
+                name: this.$data.name,
+            });
+            const result = await axios.post("http://localhost:3000/users", {
+                email: this.$data.email,
+                password: this.$data.password,
+                name: this.$data.name,
+            },
             )
-            localStorage.setItem("userinfo",JSON.stringify(result.data))
-           this.$router.push({name: "Home"})
+            localStorage.setItem("userinfo", JSON.stringify(result.data))
+            this.$router.push({ name: "Home" })
         },
+    },
+    mounted() {
+        if (localStorage.getItem("userinfo")) {
+            this.$router.push({ name: "Home" })
+        }
     }
 }
 </script>
