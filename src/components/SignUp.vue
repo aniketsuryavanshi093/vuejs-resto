@@ -38,7 +38,7 @@ export default {
                 },
             )
             localStorage.setItem("userinfo",JSON.stringify(result.data))
-            console.log(result);
+           this.$router.push({name: "Home"})
         },
     }
 }
